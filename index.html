@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Fun Button</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: black;
+      font-family: sans-serif;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 1s ease;
+    }
+
+    .button {
+      position: absolute;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: left 0.5s, top 0.5s, background-color 1s ease;
+    }
+
+    .message {
+      position: absolute;
+      top: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 5vw;
+      color: yellow;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message" id="message">Something Horrible is Coming!</div>
+  <button class="button" id="testButton">Click Me!</button>
+
+  <script>
+    const button = document.getElementById('testButton');
+    const message = document.getElementById('message');
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function getRandomPosition() {
+      const maxX = window.innerWidth - button.offsetWidth;
+      const maxY = window.innerHeight - button.offsetHeight;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      return { x, y };
+    }
+
+    button.addEventListener('click', () => {
+      // Change background color
+      document.body.style.backgroundColor = getRandomColor();
+
+      // Show message
+      message.style.opacity = 1;
+
+      // Move button randomly
+      const { x, y } = getRandomPosition();
+      button.style.left = ${x}px;
+      button.style.top = ${y}px;
+    });
+  </script>
+
+</body>
+</html>
